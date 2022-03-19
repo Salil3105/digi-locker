@@ -9,7 +9,7 @@
 .history
 .svn/
 push.sh
-
+/server/node_modules/
 
 # IntelliJ related
 *.iml
