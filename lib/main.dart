@@ -7,11 +7,18 @@ import 'package:get/get.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      getPages: [
+        GetPage(name: '/home', page: ()=> Home()),
+        GetPage(name: '/login', page: ()=> Login()),
+        GetPage(name: '/signup', page: ()=> Signup()),
+      ],
+      // initialRoute: '/login',
       home: Scaffold(
-        body: Login(),
-        // body: Signup(),
+        // body: Login(),
+        body: Signup(),
+        
       ),
     ),
   );

@@ -138,6 +138,7 @@ class _LoginState extends State<Login> {
                         print(new_email);
                       });
                     },
+
                     child: Container(
                       margin: const EdgeInsets.fromLTRB(15, 10, 15, 3),
                       padding: const EdgeInsets.all(5.0),
@@ -205,15 +206,16 @@ class _LoginState extends State<Login> {
                   MaterialButton(
                     onPressed: () {
                       // if (login() == true) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(),
-                          ),
-                        );
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => Home(),
+                      //     ),
+                      //   );
                       // } else {
                       //   print("Login Failed");
                       // }
+                      Get.toNamed('/home');
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
