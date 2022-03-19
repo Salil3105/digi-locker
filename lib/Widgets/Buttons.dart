@@ -22,7 +22,8 @@ class Buttons extends StatelessWidget {
       height: 50.0,
       minWidth: 310.0,
       splashColor: Color.fromARGB(255, 235, 170, 117),
-      color: Color.fromARGB(255, 221, 119, 79),
+      // color: Color.fromARGB(255, 221, 119, 79),
+      color: Color.fromARGB(255, 66, 128, 241),
       child: Text(
         text,
         style: TextStyle(

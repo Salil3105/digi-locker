@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 221, 119, 79),
+        backgroundColor: Color.fromARGB(255, 72, 187, 240),
         title: Text(
           'Home',
           style: GoogleFonts.mina(
@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
           style: GoogleFonts.mina(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),

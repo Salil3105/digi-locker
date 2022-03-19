@@ -162,7 +162,7 @@ class _SignupState extends State<Signup> {
                         color: Colors.white30,
                         borderRadius: BorderRadius.circular(12.0),
                         border: Border.all(
-                          color: Color.fromARGB(255, 198, 42, 39),
+                          color: Color.fromARGB(255, 72, 187, 240),
                           width: 0.1,
                         ),
                       ),
@@ -189,7 +189,7 @@ class _SignupState extends State<Signup> {
                         color: Colors.white30,
                         borderRadius: BorderRadius.circular(12.0),
                         border: Border.all(
-                          color: Color.fromARGB(255, 198, 42, 39),
+                          color: Color.fromARGB(255, 72, 187, 240),
                           width: 0.1,
                         ),
                       ),
@@ -216,7 +216,7 @@ class _SignupState extends State<Signup> {
                         color: Colors.white30,
                         borderRadius: BorderRadius.circular(12.0),
                         border: Border.all(
-                          color: Color.fromARGB(255, 198, 42, 39),
+                          color: Color.fromARGB(255, 72, 187, 240),
                           width: 0.1,
                         ),
                       ),

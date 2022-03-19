@@ -59,8 +59,8 @@ class _LoginState extends State<Login> {
                       child: Container(
                         alignment: Alignment.center,
                         child: Lottie.network(
-                          "https://assets7.lottiefiles.com/packages/lf20_rf7upa0j.json",
-                          animate: false,
+                          "https://assets4.lottiefiles.com/packages/lf20_06qof0oc.json",
+                          animate: true, 
                         ),
                       ),
                     ),
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                       child: Container(
                         alignment: Alignment.center,
                         child: Lottie.network(
-                          "https://assets3.lottiefiles.com/packages/lf20_nwfrjcrb.json",
+                          "https://assets10.lottiefiles.com/packages/lf20_gcudkx1v.json",
                           animate: true,
                         ),
                         decoration: BoxDecoration(),
@@ -146,7 +146,7 @@ class _LoginState extends State<Login> {
                         color: Colors.white30,
                         borderRadius: BorderRadius.circular(12.0),
                         border: Border.all(
-                          color: Color.fromARGB(255, 198, 42, 39),
+                          color: Color.fromARGB(255, 72, 187, 240),
                           width: 0.1,
                         ),
                       ),
@@ -169,7 +169,7 @@ class _LoginState extends State<Login> {
                       color: Colors.white30,
                       borderRadius: BorderRadius.circular(12.0),
                       border: Border.all(
-                        color: Color.fromARGB(255, 198, 42, 39),
+                        color: Color.fromARGB(255, 72, 187, 240),
                         width: 0.1,
                       ),
                     ),
@@ -222,8 +222,8 @@ class _LoginState extends State<Login> {
                     ),
                     height: 40.0,
                     minWidth: 300.0,
-                    splashColor: Color.fromARGB(255, 235, 170, 117),
-                    color: Color.fromARGB(255, 221, 119, 79),
+                    splashColor: Color.fromARGB(255, 110, 186, 221),
+                    color: Color.fromARGB(255, 72, 187, 240),
                     child: const Text(
                       "Login",
                       style: TextStyle(
@@ -248,7 +248,7 @@ class _LoginState extends State<Login> {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 221, 119, 79),
+                          color: Color.fromARGB(255, 72, 187, 240),
                         ),
                       ),
                     ),
@@ -266,7 +266,7 @@ class _LoginState extends State<Login> {
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 221, 119, 79),
+                              color: Color.fromARGB(255, 72, 187, 240),
                             ),
                           ),
                         ),
