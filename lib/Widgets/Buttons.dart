@@ -19,8 +19,8 @@ class Buttons extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      height: 40.0,
-      minWidth: 300.0,
+      height: 50.0,
+      minWidth: 310.0,
       splashColor: Color.fromARGB(255, 235, 170, 117),
       color: Color.fromARGB(255, 221, 119, 79),
       child: Text(

@@ -180,9 +180,7 @@ class _SignupState extends State<Signup> {
 
                   GestureDetector(
                     onTap: () {
-                      setState(() {
-                        
-                      });
+                      setState(() {});
                     },
                     child: Container(
                       margin: const EdgeInsets.fromLTRB(15, 10, 15, 3),
@@ -209,9 +207,7 @@ class _SignupState extends State<Signup> {
 
                   GestureDetector(
                     onTap: () {
-                      setState(() {
-
-                      });
+                      setState(() {});
                     },
                     child: Container(
                       margin: const EdgeInsets.fromLTRB(15, 10, 15, 3),
@@ -240,10 +236,10 @@ class _SignupState extends State<Signup> {
 
                   // Buttons
                   Buttons(
-                    text: 'Sign Up',
-                    task: () {
-                      // if (signup() == true) {
-                      //   print("Signup Successful");
+                      text: 'Sign Up',
+                      task: () {
+                        // if (signup() == true) {
+                        //   print("Signup Successful");
                         // Navigator.push(
                         //   context,
                         //   MaterialPageRoute(
@@ -251,12 +247,17 @@ class _SignupState extends State<Signup> {
                         //   ),
                         // );
                         Get.toNamed('/home');
-                      } 
+                        Get.snackbar(
+                          "Welcome to DiGi Locker 🔒",
+                          "",
+                          duration: Duration(seconds: 2),
+                        );
+                      }
                       // else {
                       //   print("Error");
                       // }
-                    // },
-                  ),
+                      // },
+                      ),
                 ],
               ),
             ],
