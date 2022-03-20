@@ -22,9 +22,6 @@ void main() {
       // initialRoute: '/login',
       home: Scaffold(
         body: Login(),
-        // body: Signup(),
-        // body: ForgotPassword(),
-        
       ),
     ),
   );
