@@ -11,11 +11,13 @@ import 'Pages/forgot_password.dart';
 void main() {
   runApp(
     GetMaterialApp(
+      
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(name: '/home', page: ()=> Home()),
         GetPage(name: '/login', page: ()=> Login()),
         GetPage(name: '/signup', page: ()=> Signup()),
+        GetPage(name: '/forgot-screen', page: ()=> ForgotPassword()),
       ],
       // initialRoute: '/login',
       home: Scaffold(

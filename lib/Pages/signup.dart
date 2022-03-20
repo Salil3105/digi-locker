@@ -59,208 +59,227 @@ class _SignupState extends State<Signup> {
   Widget build(BuildContext context) {
     String password;
     String email;
-    return Container(
-      decoration: BoxDecoration(color: Colors.white54),
-      child: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 280.0,
-                width: double.infinity,
-                child: Stack(
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          color: Color.fromARGB(134, 233, 228, 228),
+          border: Border.all(
+            // color: Colors.red,
+            width: 5.0,
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 280.0,
+                  width: double.infinity,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Lottie.network(
+                            "https://assets2.lottiefiles.com/packages/lf20_q5pk6p1k.json",
+                            animate: true,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Lottie.network(
+                            "https://assets3.lottiefiles.com/packages/lf20_nwfrjcrb.json",
+                            animate: true,
+                          ),
+                          decoration: BoxDecoration(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 1.0,
+                ),
+                Column(
                   children: [
-                    Positioned(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Lottie.network(
-                          "https://assets2.lottiefiles.com/packages/lf20_q5pk6p1k.json",
-                          animate: true,
+                    Container(
+                      margin: const EdgeInsets.all(1.0),
+                      height: 45.0,
+                      // decoration: BoxDecoration(
+                      //   borderRadius: BorderRadius.circular(10.0),
+                      //   border: Border.all(
+                      //       color: const Color.fromARGB(255, 235, 196, 105),
+                      //       width: 2.0),
+                      // ),
+                      child: Center(
+                        child: Text(
+                          "Welcome to DIGI LOCKER ",
+                          style: GoogleFonts.mina(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54,
+                          ),
                         ),
                       ),
                     ),
-                    Positioned(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Lottie.network(
-                          "https://assets3.lottiefiles.com/packages/lf20_nwfrjcrb.json",
-                          animate: true,
+
+                    // ---------------------------------------------------------------------
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        // border: Border.all(
+                        //   color: const Color.fromARGB(255, 235, 196, 105),
+                        //   width: 2.0,
+                        // ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Keep your data safe! 🔒",
+                          style: GoogleFonts.mina(
+                            fontSize: 17.0,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 87, 84, 84),
+                            letterSpacing: 0.1,
+                          ),
                         ),
-                        decoration: BoxDecoration(),
+                      ),
+                    ),
+
+                    // Inputs
+                    // Inputs(label: 'First name ', obscureText: false),
+                    // Inputs(label: 'Last name ', obscureText: false),
+                    // Inputs(label: 'Email Id', obscureText: false),
+                    // Inputs(label: 'Password ', obscureText: true),
+                    // Inputs(label: 'Confirm Password   ', obscureText: true),
+
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        setState(() {
+                          String newEmail = "";
+                          email = newEmail;
+                        });
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white30,
+                          borderRadius: BorderRadius.circular(12.0),
+                          border: Border.all(
+                            color: Color.fromARGB(255, 72, 187, 240),
+                            width: 0.1,
+                          ),
+                        ),
+                        child: TextField(
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(15.0),
+                            border: InputBorder.none,
+                            hintText: "Email Id",
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        setState(() {});
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white30,
+                          borderRadius: BorderRadius.circular(12.0),
+                          border: Border.all(
+                            color: Color.fromARGB(255, 72, 187, 240),
+                            width: 0.1,
+                          ),
+                        ),
+                        child: TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(15.0),
+                            border: InputBorder.none,
+                            hintText: "Password",
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        setState(() {});
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
+                        padding: const EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white30,
+                          borderRadius: BorderRadius.circular(12.0),
+                          border: Border.all(
+                            color: Color.fromARGB(255, 72, 187, 240),
+                            width: 0.1,
+                          ),
+                        ),
+                        child: TextField(
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(15.0),
+                            border: InputBorder.none,
+                            hintText: "Confirm Password",
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 20.0),
+
+                    // Buttons
+                    // Buttons(
+                    //   text: 'Sign Up',
+                    //   task: () {
+                    //     Get.toNamed('/home');
+                    //     Get.snackbar(
+                    //       "Welcome to DiGi Locker 🔒",
+                    //       "",
+                    //       duration: Duration(seconds: 2),
+                    //     );
+                    //   },
+                    // ),
+                    MaterialButton(
+                      onPressed: () {
+                        Get.toNamed('/home');
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      height: 50.0,
+                      minWidth: 310.0,
+                      splashColor: Color.fromARGB(255, 110, 186, 221),
+                      color: Color.fromARGB(255, 72, 187, 240),
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
-              SizedBox(
-                height: 1.0,
-              ),
-              Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(1.0),
-                    height: 45.0,
-                    // decoration: BoxDecoration(
-                    //   borderRadius: BorderRadius.circular(10.0),
-                    //   border: Border.all(
-                    //       color: const Color.fromARGB(255, 235, 196, 105),
-                    //       width: 2.0),
-                    // ),
-                    child: Center(
-                      child: Text(
-                        "Welcome to DIGI LOCKER ",
-                        style: GoogleFonts.mina(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  // ---------------------------------------------------------------------
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      // border: Border.all(
-                      //   color: const Color.fromARGB(255, 235, 196, 105),
-                      //   width: 2.0,
-                      // ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Keep your data safe! 🔒",
-                        style: GoogleFonts.mina(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 87, 84, 84),
-                          letterSpacing: 0.1,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  // Inputs
-                  // Inputs(label: 'First name ', obscureText: false),
-                  // Inputs(label: 'Last name ', obscureText: false),
-                  // Inputs(label: 'Email Id', obscureText: false),
-                  // Inputs(label: 'Password ', obscureText: true),
-                  // Inputs(label: 'Confirm Password   ', obscureText: true),
-
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        String newEmail = "";
-                        email = newEmail;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.fromLTRB(15, 10, 15, 3),
-                      padding: const EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white30,
-                        borderRadius: BorderRadius.circular(12.0),
-                        border: Border.all(
-                          color: Color.fromARGB(255, 72, 187, 240),
-                          width: 0.1,
-                        ),
-                      ),
-                      child: TextField(
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15.0),
-                          border: InputBorder.none,
-                          hintText: "Email Id",
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {});
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.fromLTRB(15, 10, 15, 3),
-                      padding: const EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white30,
-                        borderRadius: BorderRadius.circular(12.0),
-                        border: Border.all(
-                          color: Color.fromARGB(255, 72, 187, 240),
-                          width: 0.1,
-                        ),
-                      ),
-                      child: TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15.0),
-                          border: InputBorder.none,
-                          hintText: "Password",
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {});
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.fromLTRB(15, 10, 15, 3),
-                      padding: const EdgeInsets.all(5.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white30,
-                        borderRadius: BorderRadius.circular(12.0),
-                        border: Border.all(
-                          color: Color.fromARGB(255, 72, 187, 240),
-                          width: 0.1,
-                        ),
-                      ),
-                      child: TextField(
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(15.0),
-                          border: InputBorder.none,
-                          hintText: "Confirm Password",
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(height: 20.0),
-
-                  // Buttons
-                  Buttons(
-                      text: 'Sign Up',
-                      task: () {
-                        // if (signup() == true) {
-                        //   print("Signup Successful");
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) =>  Login(),
-                        //   ),
-                        // );
-                        Get.toNamed('/home');
-                        Get.snackbar(
-                          "Welcome to DiGi Locker 🔒",
-                          "",
-                          duration: Duration(seconds: 2),
-                        );
-                      }
-                      // else {
-                      //   print("Error");
-                      // }
-                      // },
-                      ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

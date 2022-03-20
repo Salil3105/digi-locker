@@ -45,31 +45,41 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     String email = "";
     return Container(
-      decoration: BoxDecoration(color: Colors.white54),
+      decoration: BoxDecoration(
+        color: Color.fromARGB(134, 233, 228, 228),
+      ),
       child: Center(
         child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
                 height: 280.0,
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     color: Colors.black,
+                //     width: 2.0,
+                //   ),
+                // ),
                 width: double.infinity,
                 child: Stack(
                   children: [
                     Positioned(
                       child: Container(
+                        padding: EdgeInsets.all(0.0),
                         alignment: Alignment.center,
                         child: Lottie.network(
                           "https://assets4.lottiefiles.com/packages/lf20_06qof0oc.json",
-                          animate: true, 
+                          animate: true,
                         ),
                       ),
                     ),
                     Positioned(
+                      // Lock Image 
                       child: Container(
                         alignment: Alignment.center,
                         child: Lottie.network(
                           "https://assets10.lottiefiles.com/packages/lf20_gcudkx1v.json",
-                          animate: true,
+                          animate: false,
                         ),
                         decoration: BoxDecoration(),
                       ),
@@ -130,6 +140,7 @@ class _LoginState extends State<Login> {
                   // Inputs(label: 'Email Id', obscureText: false),
                   // Inputs(label: 'Password ', obscureText: true),
                   GestureDetector(
+                    behavior: HitTestBehavior.translucent,
                     onTap: () {
                       print("\nTapped\n");
                       setState(() {
@@ -138,9 +149,8 @@ class _LoginState extends State<Login> {
                         print(new_email);
                       });
                     },
-
                     child: Container(
-                      margin: const EdgeInsets.fromLTRB(15, 10, 15, 3),
+                      margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
                       padding: const EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                         color: Colors.white30,
@@ -163,7 +173,7 @@ class _LoginState extends State<Login> {
                   ),
 
                   Container(
-                    margin: const EdgeInsets.fromLTRB(15, 10, 15, 3),
+                    margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
                     padding: const EdgeInsets.all(5.0),
                     decoration: BoxDecoration(
                       color: Colors.white30,
@@ -205,23 +215,13 @@ class _LoginState extends State<Login> {
 
                   MaterialButton(
                     onPressed: () {
-                      // if (login() == true) {
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => Home(),
-                      //     ),
-                      //   );
-                      // } else {
-                      //   print("Login Failed");
-                      // }
                       Get.toNamed('/home');
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    height: 40.0,
-                    minWidth: 300.0,
+                    height: 50.0,
+                    minWidth: 310.0,
                     splashColor: Color.fromARGB(255, 110, 186, 221),
                     color: Color.fromARGB(255, 72, 187, 240),
                     child: const Text(
@@ -243,12 +243,17 @@ class _LoginState extends State<Login> {
                     // ),
                     height: 50.0,
                     child: Center(
-                      child: Text(
-                        "Forgot password ?",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 72, 187, 240),
+                      child: InkWell(
+                        onTap: () {
+                          Get.toNamed('/forgot-screen');
+                        },
+                        child: Text(
+                          "Forgot password ?",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 72, 187, 240),
+                          ),
                         ),
                       ),
                     ),
@@ -271,14 +276,19 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                       ),
-                      Container(
-                        child: Center(
-                          child: Text(
-                            " Register !",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 107, 99, 95),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed('/signup');
+                        },
+                        child: Container(
+                          child: Center(
+                            child: Text(
+                              " Register !",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 107, 99, 95),
+                              ),
                             ),
                           ),
                         ),

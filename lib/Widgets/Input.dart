@@ -15,7 +15,7 @@ class Inputs extends StatelessWidget {
     // TextEditingController firstNameController = TextEditingController();
     return GestureDetector(
       child: Container(
-        margin: const EdgeInsets.fromLTRB(15, 10, 15, 3),
+        margin: const EdgeInsets.fromLTRB(20, 10, 20, 3),
         padding: const EdgeInsets.all(5.0),
         decoration: BoxDecoration(
           color: Colors.white30,
