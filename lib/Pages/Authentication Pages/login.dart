@@ -1,50 +1,36 @@
-// imports
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/get_utils.dart';
 import 'package:lottie/lottie.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'dart:convert';
 
-import '../Widgets/Buttons.dart';
-import '../Widgets/Input.dart';
-import 'home.dart';
-import 'login.dart';
+import '../../Widgets/Buttons.dart';
+import '../../Widgets/Input.dart';
+import '../Home Page/home.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignupState extends State<Signup> {
-  // Future<void> signupAPI() async {
-  //   final response = await http.post(
-  //     Uri.parse('https://api.thevirustracker.com/free-api?countryTotal=US'),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: jsonEncode(
-  //       <String, String>{
-  //         'email': _emailController.text,
-  //         'password': _passwordController.text,
-  //       },
-  //     ),
-  //   );
-  // }
-
-  Future<bool> signup() async {
-    print("In Signup Function");
+class _LoginState extends State<Login> {
+  Future<bool> login() async {
+    print("In Login Function");
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request(
-        'POST', Uri.parse('http://172.22.123.34:5000/auth/signup'));
-    request.body = json.encode({"emailID": "", "password": ""});
+    var request = await http.Request(
+        'POST', Uri.parse('http://172.22.123.34:5000/auth/login'));
+
+    request.body = json.encode(
+        {"emailID": "schandwadkar31@gmail.com", "password": "kuchabhi"});
+
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
+    print('Request Body :",\n${response}');
+    print("Response Code: ${response.statusCode}");
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
@@ -57,16 +43,10 @@ class _SignupState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
-    String password;
-    String email;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
           color: Color.fromARGB(134, 233, 228, 228),
-          border: Border.all(
-            // color: Colors.red,
-            width: 5.0,
-          ),
         ),
         child: Center(
           child: SingleChildScrollView(
@@ -74,24 +54,32 @@ class _SignupState extends State<Signup> {
               children: [
                 Container(
                   height: 280.0,
+                  // decoration: BoxDecoration(
+                  //   border: Border.all(
+                  //     color: Colors.black,
+                  //     width: 2.0,
+                  //   ),
+                  // ),
                   width: double.infinity,
                   child: Stack(
                     children: [
                       Positioned(
                         child: Container(
+                          padding: EdgeInsets.all(0.0),
                           alignment: Alignment.center,
                           child: Lottie.network(
-                            "https://assets2.lottiefiles.com/packages/lf20_q5pk6p1k.json",
+                            "https://assets4.lottiefiles.com/packages/lf20_06qof0oc.json",
                             animate: true,
                           ),
                         ),
                       ),
                       Positioned(
+                        // Lock Image
                         child: Container(
                           alignment: Alignment.center,
                           child: Lottie.network(
-                            "https://assets3.lottiefiles.com/packages/lf20_nwfrjcrb.json",
-                            animate: true,
+                            "https://assets10.lottiefiles.com/packages/lf20_gcudkx1v.json",
+                            animate: false,
                           ),
                           decoration: BoxDecoration(),
                         ),
@@ -149,20 +137,10 @@ class _SignupState extends State<Signup> {
                     ),
 
                     // Inputs
-                    // Inputs(label: 'First name ', obscureText: false),
-                    // Inputs(label: 'Last name ', obscureText: false),
                     // Inputs(label: 'Email Id', obscureText: false),
                     // Inputs(label: 'Password ', obscureText: true),
-                    // Inputs(label: 'Confirm Password   ', obscureText: true),
-
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        setState(() {
-                          String newEmail = "";
-                          email = newEmail;
-                        });
-                      },
                       child: Container(
                         margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
                         padding: const EdgeInsets.all(5.0),
@@ -174,8 +152,8 @@ class _SignupState extends State<Signup> {
                             width: 0.1,
                           ),
                         ),
-                        child: TextField(
-                          obscureText: false,
+                        child: const TextField(
+                          // obscureText: obscureText,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(15.0),
                             border: InputBorder.none,
@@ -186,58 +164,24 @@ class _SignupState extends State<Signup> {
                       ),
                     ),
 
-                    GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        setState(() {});
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: Colors.white30,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border: Border.all(
-                            color: Color.fromARGB(255, 72, 187, 240),
-                            width: 0.1,
-                          ),
-                        ),
-                        child: TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(15.0),
-                            border: InputBorder.none,
-                            hintText: "Password",
-                            hintStyle: TextStyle(color: Colors.grey),
-                          ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
+                      padding: const EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white30,
+                        borderRadius: BorderRadius.circular(12.0),
+                        border: Border.all(
+                          color: Color.fromARGB(255, 72, 187, 240),
+                          width: 0.1,
                         ),
                       ),
-                    ),
-
-                    GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        setState(() {});
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: Colors.white30,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border: Border.all(
-                            color: Color.fromARGB(255, 72, 187, 240),
-                            width: 0.1,
-                          ),
-                        ),
-                        child: TextField(
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(15.0),
-                            border: InputBorder.none,
-                            hintText: "Confirm Password",
-                            hintStyle: TextStyle(color: Colors.grey),
-                          ),
+                      child: const TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(15.0),
+                          border: InputBorder.none,
+                          hintText: "Password ",
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                       ),
                     ),
@@ -246,19 +190,24 @@ class _SignupState extends State<Signup> {
 
                     // Buttons
                     // Buttons(
-                    //   text: 'Sign Up',
+                    //   text: 'Login',
                     //   task: () {
-                    //     Get.toNamed('/home');
-                    //     Get.snackbar(
-                    //       "Welcome to DiGi Locker 🔒",
-                    //       "",
-                    //       duration: Duration(seconds: 2),
+                    //     // if (login() == true) {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => Home(),
+                    //       ),
                     //     );
+                    //     // } else {
+                    //     //   print("Login Failed");
+                    //     // }
                     //   },
                     // ),
+
                     MaterialButton(
                       onPressed: () {
-                        Get.toNamed('/home');
+                        Get.toNamed('/bottom-nav-bar');
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -268,7 +217,7 @@ class _SignupState extends State<Signup> {
                       splashColor: Color.fromARGB(255, 110, 186, 221),
                       color: Color.fromARGB(255, 72, 187, 240),
                       child: const Text(
-                        "Sign Up",
+                        "Login",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -276,6 +225,68 @@ class _SignupState extends State<Signup> {
                         ),
                       ),
                     ),
+
+                    SizedBox(height: 20.0),
+
+                    // Forgot Password Link
+                    Container(
+                      // decoration: BoxDecoration(
+                      //   border: Border.all(color: Colors.black12, width: 0.1),
+                      // ),
+                      height: 50.0,
+                      child: Center(
+                        child: InkWell(
+                          onTap: () {
+                            Get.toNamed('/forgot-screen');
+                          },
+                          child: Text(
+                            "Forgot password ?",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 72, 187, 240),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 160.0),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Center(
+                            child: Text(
+                              "Don't have an account ?",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 72, 187, 240),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed('/signup');
+                          },
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                " Register !",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 107, 99, 95),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ],

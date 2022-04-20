@@ -1,4 +1,4 @@
-import 'package:digi_locker_app/Pages/home.dart';
+import 'package:digi_locker_app/Pages/Home%20Page/home.dart';
 import 'package:flutter/material.dart';
 
 class Buttons extends StatelessWidget {

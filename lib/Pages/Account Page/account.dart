@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Account_Screen extends StatefulWidget {
+  const Account_Screen({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Account_Screen> createState() => _Account_ScreenState();
 }
 
-class _HomeState extends State<Home> {
+class _Account_ScreenState extends State<Account_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 72, 187, 240),
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.blueAccent,
         title: Text(
-          'Home',
+          '    Account',
           style: GoogleFonts.mina(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
       ),
       body: Center(
         child: Text(
-          'Home Page',
+          'Account Screen Page',
           style: GoogleFonts.mina(
             fontSize: 20,
             fontWeight: FontWeight.bold,
