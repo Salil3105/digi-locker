@@ -21,37 +21,38 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  // Future<void> signupAPI() async {
-  //   final response = await http.post(
-  //     Uri.parse('https://api.thevirustracker.com/free-api?countryTotal=US'),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: jsonEncode(
-  //       <String, String>{
-  //         'email': _emailController.text,
-  //         'password': _passwordController.text,
-  //       },
-  //     ),
-  //   );
+  // Future<bool> signup() async {
+  //   print("In Signup Function");
+  //   var headers = {'Content-Type': 'application/json'};
+  //   var request = http.Request(
+  //       'POST', Uri.parse('http://172.22.123.34:5000/auth/signup'));
+  //   request.body = json.encode({"emailID": "", "password": ""});
+  //   request.headers.addAll(headers);
+
+  //   http.StreamedResponse response = await request.send();
+
+  //   if (response.statusCode == 200) {
+  //     print(await response.stream.bytesToString());
+  //     return true;
+  //   } else {
+  //     print(response.reasonPhrase);
+  //     return false;
+  //   }
   // }
 
-  Future<bool> signup() async {
-    print("In Signup Function");
-    var headers = {'Content-Type': 'application/json'};
-    var request = http.Request(
-        'POST', Uri.parse('http://172.22.123.34:5000/auth/signup'));
-    request.body = json.encode({"emailID": "", "password": ""});
-    request.headers.addAll(headers);
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
 
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+  bool isSignUp() {
+    if (_emailController.text == "" ||
+        (_passwordController.text == "" ||
+            _confirmPasswordController.text == "")) {
       return true;
-    } else {
-      print(response.reasonPhrase);
+    } else if (_passwordController.text != _confirmPasswordController.text) {
       return false;
+    } else {
+      return true;
     }
   }
 
@@ -157,15 +158,9 @@ class _SignupState extends State<Signup> {
 
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        setState(() {
-                          String newEmail = "";
-                          email = newEmail;
-                        });
-                      },
                       child: Container(
-                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
-                        padding: const EdgeInsets.all(5.0),
+                        margin: EdgeInsets.fromLTRB(25, 10, 25, 3),
+                        padding: EdgeInsets.all(5.0),
                         decoration: BoxDecoration(
                           color: Colors.white30,
                           borderRadius: BorderRadius.circular(12.0),
@@ -175,6 +170,7 @@ class _SignupState extends State<Signup> {
                           ),
                         ),
                         child: TextField(
+                          controller: _emailController,
                           obscureText: false,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(15.0),
@@ -188,9 +184,7 @@ class _SignupState extends State<Signup> {
 
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        setState(() {});
-                      },
+                      onTap: () {},
                       child: Container(
                         margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
                         padding: const EdgeInsets.all(5.0),
@@ -203,6 +197,7 @@ class _SignupState extends State<Signup> {
                           ),
                         ),
                         child: TextField(
+                          controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(15.0),
@@ -231,7 +226,8 @@ class _SignupState extends State<Signup> {
                           ),
                         ),
                         child: TextField(
-                          obscureText: false,
+                          controller: _confirmPasswordController,
+                          obscureText: true,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(15.0),
                             border: InputBorder.none,
@@ -258,7 +254,17 @@ class _SignupState extends State<Signup> {
                     // ),
                     MaterialButton(
                       onPressed: () {
-                        Get.toNamed('/home');
+                        if (isSignUp() == true) {
+                          print("Registration Successful");
+                          print("Email: " + _emailController.text);
+                          print("Password: " + _passwordController.text);
+                          print("Confirm Password: " +
+                              _confirmPasswordController.text);
+                          Get.toNamed('/login');
+                        } else {
+                          print(
+                              "Registration Failed, please try again & check your credentials");
+                        }
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
