@@ -1,4 +1,5 @@
 // // imports
+import 'package:digi_locker_app/Pages/Drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,12 +15,12 @@ void main() {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: [
-        GetPage(name: '/home', page: ()=> Home()),
-        GetPage(name: '/login', page: ()=> Login()),
-        GetPage(name: '/signup', page: ()=> Signup()),
-        GetPage(name: '/forgot-screen', page: ()=> ForgotPassword()),
-        GetPage(name: '/bottom-nav-bar', page: ()=> BottomNavBar()),
-
+        GetPage(name: '/home', page: () => Home()),
+        GetPage(name: '/login', page: () => Login()),
+        GetPage(name: '/signup', page: () => Signup()),
+        GetPage(name: '/forgot-screen', page: () => ForgotPassword()),
+        GetPage(name: '/bottom-nav-bar', page: () => BottomNavBar()),
+        GetPage(name: '/drawer-slider', page: () => DrawerSlider()),
       ],
       initialRoute: '/login',
       home: Scaffold(

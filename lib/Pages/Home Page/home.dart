@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Drawer/drawer.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -45,41 +47,35 @@ class _HomeState extends State<Home> {
                 child: Padding(
                   padding: EdgeInsets.all(9.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
                         margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
                         child: Row(
                           children: [
                             Container(
-                              // decoration: BoxDecoration(
-                              //   border: Border.all(
-                              //     color: Colors.purpleAccent,
-                              //     width: 1,
-                              //   ),
-                              // ),
-                              // height: 10,
                               width: 200,
                               child: TextField(
+                                cursorHeight: 20,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                ),
                                 decoration: InputDecoration(
+                                  border: InputBorder.none,
                                   hintText: "Search",
                                   hintStyle: GoogleFonts.aBeeZee(
-                                    fontSize: 13,
+                                    fontSize: 11,
                                     color: Colors.white,
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
                       Container(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //     color: Colors.pinkAccent,
-                        //     width: 1,
-                        //   ),
-                        // ),
                         margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
                         child: Icon(
                           Icons.search_outlined,
@@ -126,6 +122,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           body: Scaffold(
+            drawer: DrawerSlider(),
             body: TabBarView(
               children: [
                 Container(

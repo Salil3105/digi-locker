@@ -17,29 +17,46 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  Future<bool> login() async {
-    print("In Login Function");
-    var headers = {'Content-Type': 'application/json'};
-    var request = await http.Request(
-        'POST', Uri.parse('http://172.22.123.34:5000/auth/login'));
+  // Future<bool> login() async {
+  //   print("In Login Function");
+  //   var headers = {'Content-Type': 'application/json'};
+  //   var request = await http.Request(
+  //       'POST', Uri.parse('http://172.22.123.34:5000/auth/login'));
 
-    request.body = json.encode(
-        {"emailID": "schandwadkar31@gmail.com", "password": "kuchabhi"});
+  //   request.body = json.encode(
+  //       {"emailID": "schandwadkar31@gmail.com", "password": "kuchabhi"});
 
-    request.headers.addAll(headers);
+  //   request.headers.addAll(headers);
 
-    http.StreamedResponse response = await request.send();
-    print('Request Body :",\n${response}');
-    print("Response Code: ${response.statusCode}");
+  //   http.StreamedResponse response = await request.send();
+  //   print('Request Body :",\n${response}');
+  //   print("Response Code: ${response.statusCode}");
 
-    if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
-      return true;
+  //   if (response.statusCode == 200) {
+  //     print(await response.stream.bytesToString());
+  //     return true;
+  //   } else {
+  //     print(response.reasonPhrase);
+  //     return false;
+  //   }
+  // }
+
+  bool isLogin() {
+    if (_emailController.text == "schandwadkar31@gmail.com" &&
+        _passwordController.text == "kuchabhi") {
+      Get.toNamed('/bottom-nav-bar');
+      print("Login Successful");
+      print("Email: ${_emailController.text}");
+      print("Password: ${_passwordController.text}");
+      return false;
     } else {
-      print(response.reasonPhrase);
+      print("Login Failed");
       return false;
     }
   }
+
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +132,7 @@ class _LoginState extends State<Login> {
 
                     // ---------------------------------------------------------------------
                     Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         // border: Border.all(
@@ -142,8 +159,8 @@ class _LoginState extends State<Login> {
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       child: Container(
-                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
-                        padding: const EdgeInsets.all(5.0),
+                        margin: EdgeInsets.fromLTRB(25, 10, 25, 3),
+                        padding: EdgeInsets.all(5.0),
                         decoration: BoxDecoration(
                           color: Colors.white30,
                           borderRadius: BorderRadius.circular(12.0),
@@ -152,8 +169,8 @@ class _LoginState extends State<Login> {
                             width: 0.1,
                           ),
                         ),
-                        child: const TextField(
-                          // obscureText: obscureText,
+                        child: TextField(
+                          controller: _emailController,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(15.0),
                             border: InputBorder.none,
@@ -165,8 +182,8 @@ class _LoginState extends State<Login> {
                     ),
 
                     Container(
-                      margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
-                      padding: const EdgeInsets.all(5.0),
+                      margin: EdgeInsets.fromLTRB(25, 10, 25, 3),
+                      padding: EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                         color: Colors.white30,
                         borderRadius: BorderRadius.circular(12.0),
@@ -175,7 +192,8 @@ class _LoginState extends State<Login> {
                           width: 0.1,
                         ),
                       ),
-                      child: const TextField(
+                      child: TextField(
+                        controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(15.0),
@@ -207,7 +225,7 @@ class _LoginState extends State<Login> {
 
                     MaterialButton(
                       onPressed: () {
-                        Get.toNamed('/bottom-nav-bar');
+                        isLogin();
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -216,7 +234,7 @@ class _LoginState extends State<Login> {
                       minWidth: 310.0,
                       splashColor: Color.fromARGB(255, 110, 186, 221),
                       color: Color.fromARGB(255, 72, 187, 240),
-                      child: const Text(
+                      child: Text(
                         "Login",
                         style: TextStyle(
                           fontSize: 20,

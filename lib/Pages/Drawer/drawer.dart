@@ -4,14 +4,14 @@ import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
 // imports Screen
 import '../Home Page/home.dart';
 
-class NavBar extends StatefulWidget {
-  const NavBar({Key? key}) : super(key: key);
+class DrawerSlider extends StatefulWidget {
+  const DrawerSlider({Key? key}) : super(key: key);
 
   @override
-  State<NavBar> createState() => _NavBarState();
+  State<DrawerSlider> createState() => _DrawerSliderState();
 }
 
-class _NavBarState extends State<NavBar> {
+class _DrawerSliderState extends State<DrawerSlider> {
   List<ScreenHiddenDrawer> _pages = [];
 
   @override
