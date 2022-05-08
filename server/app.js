@@ -21,6 +21,8 @@ mongoose
     console.log(err.message);
   });
 
+  
+
 // on connection and disconnection operations
 mongoose.connection.on("connected", () => {
   console.log("Database connected!");
@@ -43,6 +45,8 @@ process.on("SIGINT", async () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// routes
 app.use("/auth", authRouter);
+
 
 app.listen(5000, () => console.log("Example app listening on port 5000!"));

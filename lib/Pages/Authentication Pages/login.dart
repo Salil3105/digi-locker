@@ -17,41 +17,38 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  // Future<bool> login() async {
-  //   print("In Login Function");
-  //   var headers = {'Content-Type': 'application/json'};
-  //   var request = await http.Request(
-  //       'POST', Uri.parse('http://172.22.123.34:5000/auth/login'));
-
-  //   request.body = json.encode(
-  //       {"emailID": "schandwadkar31@gmail.com", "password": "kuchabhi"});
-
-  //   request.headers.addAll(headers);
-
-  //   http.StreamedResponse response = await request.send();
-  //   print('Request Body :",\n${response}');
-  //   print("Response Code: ${response.statusCode}");
-
-  //   if (response.statusCode == 200) {
-  //     print(await response.stream.bytesToString());
-  //     return true;
+  // bool isLogin() {
+  //   if (_emailController.text == "schandwadkar31@gmail.com" &&
+  //       _passwordController.text == "kuchabhi") {
+  //     Get.toNamed('/bottom-nav-bar');
+  //     print("Login Successful");
+  //     print("Email: ${_emailController.text}");
+  //     print("Password: ${_passwordController.text}");
+  //     return false;
   //   } else {
-  //     print(response.reasonPhrase);
+  //     print("Login Failed");
   //     return false;
   //   }
   // }
 
-  bool isLogin() {
-    if (_emailController.text == "schandwadkar31@gmail.com" &&
-        _passwordController.text == "kuchabhi") {
+  Future handleLogin() async {
+    var response = await http.post(
+      Uri.parse("http://192.168.1.6:5000/auth/login"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'emailID': _emailController.text,
+        'password': _passwordController.text,
+      }),
+    );
+    if (response.statusCode == 200) {
+      var responseJson = json.decode(response.body);
+      print(responseJson);
       Get.toNamed('/bottom-nav-bar');
       print("Login Successful");
-      print("Email: ${_emailController.text}");
-      print("Password: ${_passwordController.text}");
-      return false;
     } else {
-      print("Login Failed");
-      return false;
+      print("Login Failed,\nStatus Code: ${response.statusCode}");
     }
   }
 
@@ -225,7 +222,7 @@ class _LoginState extends State<Login> {
 
                     MaterialButton(
                       onPressed: () {
-                        isLogin();
+                        handleLogin();
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
