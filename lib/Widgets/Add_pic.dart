@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
-// import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddPic extends StatefulWidget {
   const AddPic({Key? key}) : super(key: key);
@@ -9,15 +9,19 @@ class AddPic extends StatefulWidget {
 }
 
 class _AddPicState extends State<AddPic> {
-  
-  // File _image;
-
-  // Future getImage() async {
-  //   var image = await ImagePicker.pickImage(source: ImageSource.camera);
-  //   setState(() {
-  //     this._image = _image;
-  //   });
-  // }
+  void getImage() async {
+    File _image;
+    var image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = image as File;
+      print(_image);
+      print(image);
+      print(image?.path);
+      print(image.toString());
+      print(image.toString().split('/').last);
+      print(image.toString().split('/').last.split('.').first);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +37,10 @@ class _AddPicState extends State<AddPic> {
               FloatingActionButton(
                 onPressed: () {
                   // bottomsheets(context);
-                  // getImage();
+                  getImage();
                 },
                 tooltip: 'Picked your photos from gallery',
-                child:  Icon(Icons.camera),
+                child: Icon(Icons.camera),
               ), // This trailing comma makes auto-formatting nicer for build methods.
             ],
           ),
@@ -59,7 +63,6 @@ void bottomsheets(context) {
           // ),
           color: Color.fromARGB(58, 248, 246, 246),
         ),
-
       ),
     ),
   );

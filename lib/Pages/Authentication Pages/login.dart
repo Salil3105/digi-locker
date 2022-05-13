@@ -17,23 +17,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  // bool isLogin() {
-  //   if (_emailController.text == "schandwadkar31@gmail.com" &&
-  //       _passwordController.text == "kuchabhi") {
-  //     Get.toNamed('/bottom-nav-bar');
-  //     print("Login Successful");
-  //     print("Email: ${_emailController.text}");
-  //     print("Password: ${_passwordController.text}");
-  //     return false;
-  //   } else {
-  //     print("Login Failed");
-  //     return false;
-  //   }
-  // }
 
   Future handleLogin() async {
     var response = await http.post(
-      Uri.parse("http://192.168.1.6:5000/auth/login"),
+      Uri.parse("http://192.168.1.6:5000/auth/signin"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -42,6 +29,7 @@ class _LoginState extends State<Login> {
         'password': _passwordController.text,
       }),
     );
+    
     if (response.statusCode == 200) {
       var responseJson = json.decode(response.body);
       print(responseJson);

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const userModel = require("../models/user");
 
+// Here we are normal authentication. `/signup` is the route for signup and `/signin` is the route for signin.
 router.post("/signup", (req, res) => {
   const data = req.body;
   console.log(data);
@@ -15,9 +16,9 @@ router.post("/signup", (req, res) => {
   });
 });
 
-router.post("/login", (req, res, next) => {
+router.post("/signin", (req, res, next) => {
   const data = req.body;
-  console.log(req.body);
+  console.table(req.body);
   console.log(data);
   userModel.findOne(
     { emailID: data.emailID, password: data.password },

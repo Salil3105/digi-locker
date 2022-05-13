@@ -7,6 +7,7 @@ app.get("/", (req, res) => {
 });
 
 const authRouter = require("./routes/auth");
+const fileRouter = require("./routes/fileUpload");
 
 mongoose
   .connect(
@@ -20,8 +21,6 @@ mongoose
   }).catch((err) => {
     console.log(err.message);
   });
-
-  
 
 // on connection and disconnection operations
 mongoose.connection.on("connected", () => {
@@ -47,6 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use("/auth", authRouter);
+app.use("/uploadFile", fileRouter);
 
 
 app.listen(5000, () => console.log("Example app listening on port 5000!"));
