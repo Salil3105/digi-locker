@@ -32,7 +32,7 @@ router.post('/uploadSingleFile', upload.single('image'), (req, res) => {
 
 //  Here we are using multer to upload the file which will be stored in the server.
 //  Here we are using the destination as "FilesUplod" and the file name will be the same as the original file name.
-//  upload.array("images",10) is used to upload the file And that is the middleware for multer.
+//  upload.array("images",10) is used to upload the file And that is the `Middleware` for multer.
 //  upload.array("images",10) where 'images' is the name of the input field in the form.
 //  upload.array("images",10) where '10' is the minimum number of files that can be uploaded.
 router.post('/uploadMultipleFiles', upload.array('image', 10), (req, res) => {
