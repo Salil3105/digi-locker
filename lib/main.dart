@@ -22,7 +22,7 @@ void main() {
         GetPage(name: '/bottom-nav-bar', page: () => BottomNavBar()),
         GetPage(name: '/drawer-slider', page: () => DrawerSlider()),
       ],
-      initialRoute: '/bottom-nav-bar',
+      initialRoute: '/login',
       home: Scaffold(
         body: BottomNavBar(),
       ),

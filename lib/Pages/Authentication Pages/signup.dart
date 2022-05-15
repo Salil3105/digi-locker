@@ -23,7 +23,7 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   Future _signup() async {
     var response = await http.post(
-      Uri.parse('http://192.168.1.6:5000/auth/signup'),
+      Uri.parse('http://192.168.187.140:5000/auth/signup'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

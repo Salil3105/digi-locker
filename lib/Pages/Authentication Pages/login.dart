@@ -20,7 +20,7 @@ class _LoginState extends State<Login> {
 
   Future handleLogin() async {
     var response = await http.post(
-      Uri.parse("http://192.168.1.6:5000/auth/signin"),
+      Uri.parse("http://192.168.187.140:5000/auth/signin"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

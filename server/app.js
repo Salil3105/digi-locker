@@ -2,6 +2,12 @@ const mongoose = require("mongoose"); // database URIs
 const express = require("express");
 const app = express();
 
+require('dotenv').config();
+const port = process.env.PORT || 5000;
+const database_name = process.env.DATABASE_NAME;
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
+
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
@@ -11,7 +17,9 @@ const fileRouter = require("./routes/fileUpload");
 
 mongoose
   .connect(
-    `mongodb+srv://whitefeather:kuchabhi@cluster0.dnero.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+    // `mongodb+srv://${username}:${password}@cluster0.dnero.mongodb.net/${database_name}?retryWrites=true&w=majority`,
+    
+    'mongodb+srv://whitefeather:kuchabhi@cluster0.dnero.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -33,6 +41,7 @@ mongoose.connection.on("error", (err) => {
 });
 
 mongoose.connection.on("disconnected", () => {
+  // console.log('Me here');
   console.log("Database disconnected!");
 });
 
@@ -49,4 +58,4 @@ app.use("/auth", authRouter);
 app.use("/uploadFile", fileRouter);
 
 
-app.listen(5000, () => console.log("Example app listening on port 5000!"));
+app.listen(port, () => console.log("Example app listening on port 5000!"));

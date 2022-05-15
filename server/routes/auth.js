@@ -4,7 +4,7 @@ const userModel = require("../models/user");
 // Here we are normal authentication. `/signup` is the route for signup and `/signin` is the route for signin.
 router.post("/signup", (req, res) => {
   const data = req.body;
-  console.log(data);
+  console.table(data);
   const user = new userModel(data);
   user.save((err, result) => {
     // save the user

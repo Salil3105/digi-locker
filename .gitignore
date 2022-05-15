@@ -9,6 +9,7 @@
 .history
 .svn/
 push.sh
+.env
 ../../server/node_modules/
 ./node_modules/
 
