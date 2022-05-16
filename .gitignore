@@ -10,10 +10,8 @@
 .svn/
 push.sh
 .env
-../../server/node_modules/
-./node_modules/
-../../server/node_modules/
-../../server/FilesUplod/
+server/node_modules/
+server/FilesUpload/
 
 # IntelliJ related
 *.iml
