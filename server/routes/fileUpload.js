@@ -5,11 +5,11 @@ const router = express.Router();
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "Uploads/");  // here we are storing the file in the server.
+        cb(null, "uploads/"); // here we are storing the file in the server.
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname);
-    }
+    },
 });
 
 const upload = multer({
@@ -21,12 +21,15 @@ const upload = multer({
 // upload.uploadSingleFile("image") is used to upload the file And that is the middleware for multer.
 // upload.uploadSingleFile("image") where 'image' is the name of the input field in the form.
 router.post('/uploadSingleFile', upload.single('image'), (req, res) => {
-    if (res.status(200)) {
-        const data = req.file;
-        console.log(data);
+    const data = req.file;
+    console.log(data);
+    if (data) {
+        res.status(200);
         res.send('File Uploaded Successfully');
-    }else {
-        res.send(res.send('File failed to upload').status(400));
+    }
+    else {
+        res.status(400);
+        res.send(res.send('File failed to upload'));
     }
 });
 
@@ -36,12 +39,14 @@ router.post('/uploadSingleFile', upload.single('image'), (req, res) => {
 //  upload.array("images",10) where 'images' is the name of the input field in the form.
 //  upload.array("images",10) where '10' is the minimum number of files that can be uploaded.
 router.post('/uploadMultipleFiles', upload.array('image', 10), (req, res) => {
-    if (res.status(200)) {
-        const data = req.files;
-        console.log(data);
+    const data = req.files;
+    console.log(data);
+    if (data) {
+        res.status(200);
         res.send('Files Uploaded Successfully');
-    }else {
-        res.send(res.send('Files failed to upload').status(400));
+    } else {
+        res.status(400);
+        res.send(res.send('Files failed to upload'));
     }
 });
 
