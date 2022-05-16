@@ -15,11 +15,6 @@ class _AddPicState extends State<AddPic> {
     setState(() {
       _image = image as File;
       print(_image);
-      print(image);
-      print(image?.path);
-      print(image.toString());
-      print(image.toString().split('/').last);
-      print(image.toString().split('/').last.split('.').first);
     });
   }
 
@@ -56,7 +51,7 @@ void bottomsheets(context) {
     builder: (context) => SingleChildScrollView(
       child: Container(
         height: 400.0,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           // border: Border.all(
           //   color: Colors.pinkAccent,
           //   width: 1.0,
