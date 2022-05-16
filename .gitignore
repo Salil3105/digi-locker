@@ -11,7 +11,7 @@
 push.sh
 .env
 server/node_modules/
-server/FilesUpload/
+server/Uploads/
 
 # IntelliJ related
 *.iml
