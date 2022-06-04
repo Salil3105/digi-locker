@@ -9,12 +9,11 @@ class AddPic extends StatefulWidget {
 }
 
 class _AddPicState extends State<AddPic> {
-  void getImage() async {
-    File _image;
-    var image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  void getImageFromGallery() async {
+    XFile _image;
+    XFile ? image = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
-      _image = image as File;
-      print(_image);
+      _image = image!;
     });
   }
 
@@ -24,7 +23,7 @@ class _AddPicState extends State<AddPic> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: EdgeInsets.all(5.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -32,7 +31,7 @@ class _AddPicState extends State<AddPic> {
               FloatingActionButton(
                 onPressed: () {
                   // bottomsheets(context);
-                  getImage();
+                  getImageFromGallery();
                 },
                 tooltip: 'Picked your photos from gallery',
                 child: Icon(Icons.camera),
@@ -45,20 +44,20 @@ class _AddPicState extends State<AddPic> {
   }
 }
 
-void bottomsheets(context) {
-  showModalBottomSheet(
-    context: context,
-    builder: (context) => SingleChildScrollView(
-      child: Container(
-        height: 400.0,
-        decoration: const BoxDecoration(
-          // border: Border.all(
-          //   color: Colors.pinkAccent,
-          //   width: 1.0,
-          // ),
-          color: Color.fromARGB(58, 248, 246, 246),
-        ),
-      ),
-    ),
-  );
-}
+// void bottomsheets(context) {
+//   showModalBottomSheet(
+//     context: context,
+//     builder: (context) => SingleChildScrollView(
+//       child: Container(
+//         height: 400.0,
+//         decoration: const BoxDecoration(
+//           // border: Border.all(
+//           //   color: Colors.pinkAccent,
+//           //   width: 1.0,
+//           // ),
+//           color: Color.fromARGB(58, 248, 246, 246),
+//         ),
+//       ),
+//     ),
+//   );
+// }

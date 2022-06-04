@@ -38,7 +38,7 @@ router.post('/uploadSingleFile', upload.single('image'), (req, res) => {
 //  upload.array("images",10) is used to upload the file And that is the `Middleware` for multer.
 //  upload.array("images",10) where 'images' is the name of the input field in the form.
 //  upload.array("images",10) where '10' is the minimum number of files that can be uploaded.
-router.post('/uploadMultipleFiles', upload.array('image', 10), (req, res) => {
+router.post('/uploadMultipleFiles', upload.array('image', 3), (req, res) => {
     const data = req.files;
     console.log(data);
     if (data) {
