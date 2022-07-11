@@ -4,8 +4,7 @@ import 'package:digi_locker_app/Pages/Home%20Page/home.dart';
 import 'package:digi_locker_app/Pages/Photos%20Page/photos.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
-import '../Drawer/drawer.dart';
+import 'package:get/get.dart';
 // import 'package:line_icons/line_icons.dart';
 
 class BottomNavBar extends StatefulWidget {

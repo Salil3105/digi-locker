@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../Drawer/drawer.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -122,7 +121,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           body: Scaffold(
-            drawer: DrawerSlider(),
+            
             body: TabBarView(
               children: [
                 Container(

@@ -1,6 +1,5 @@
 // imports
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:lottie/lottie.dart';
@@ -21,69 +20,47 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  Future _signup() async {
-    var response = await http.post(
-      Uri.parse('http://192.168.187.140:5000/auth/signup'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(
-        {
-          'username': _usernameController.text,
-          'emailID': _emailController.text,
-          'password': _passwordController.text,
-        },
-      ),
-    );
-    if (response.statusCode == 200) {
-      Get.offAllNamed('/login');
+  Future handleSignUp() async {
+    var firstnameController = _firstnameController.text;
+    var lastnameController = _lastnameController.text;
+    var emailController = _emailController.text;
+    var passwordController = _passwordController.text;
+    print("\n");
+    print("Firstname: $firstnameController");
+    print("Lastname: $lastnameController");
+    print("Email : $emailController");
+    print("Password : $passwordController");
+    print("\n");
+    var url = 'http://172.25.54.75:4000/auth/register';
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request('POST', Uri.parse(url));
+    request.body = json.encode({
+      'first_name': firstnameController,
+      'last_name': lastnameController,
+      'email': emailController,
+      'password': passwordController,
+    });
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if(response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      print("Registration Successful");
+      Get.toNamed('/login');
       Get.snackbar(
-        "Login",
-        'Signup Successful',
-        duration: Duration(seconds: 3),
+        "Register",
+        'Register Successfully',
+        duration: Duration(seconds: 1),
       );
-      print("\n");
-      print(_usernameController.text);
-      print(_emailController.text);
-      print(_passwordController.text);
-      print("\n");
     } else {
-      Get.snackbar(
-        'Error',
-        'Something went wrong',
-        icon: Icon(
-          Icons.error,
-          color: Colors.red,
-        ),
-        backgroundColor: Colors.white,
-        colorText: Colors.red,
-        borderRadius: 10,
-        snackPosition: SnackPosition.BOTTOM,
-        margin: EdgeInsets.all(10),
-        duration: Duration(seconds: 3),
-      );
+      print(response.reasonPhrase);
+      print("Registration Failed");
     }
-    print("\n");
-    print(response.body);
-    print("\n");
   }
 
-  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _firstnameController = TextEditingController();
+  TextEditingController _lastnameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
-
-  // bool isSignUp() {
-  //   if (_emailController.text == "" ||
-  //       (_passwordController.text == "" ||
-  //           _confirmPasswordController.text == "")) {
-  //     return true;
-  //   } else if (_passwordController.text != _confirmPasswordController.text) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -199,12 +176,12 @@ class _SignupState extends State<Signup> {
                           ),
                         ),
                         child: TextField(
-                          controller: _usernameController,
+                          controller: _firstnameController,
                           obscureText: false,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(15.0),
                             border: InputBorder.none,
-                            hintText: "Username",
+                            hintText: "First name",
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                         ),
@@ -215,6 +192,32 @@ class _SignupState extends State<Signup> {
                       child: Container(
                         margin: EdgeInsets.fromLTRB(25, 10, 25, 3),
                         padding: EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white30,
+                          borderRadius: BorderRadius.circular(12.0),
+                          border: Border.all(
+                            color: Color.fromARGB(255, 72, 187, 240),
+                            width: 0.1,
+                          ),
+                        ),
+                        child: TextField(
+                          controller: _lastnameController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(15.0),
+                            border: InputBorder.none,
+                            hintText: "Last name",
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      child: Container(
+                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
+                        padding: const EdgeInsets.all(5.0),
                         decoration: BoxDecoration(
                           color: Colors.white30,
                           borderRadius: BorderRadius.circular(12.0),
@@ -238,6 +241,9 @@ class _SignupState extends State<Signup> {
 
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        setState(() {});
+                      },
                       child: Container(
                         margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
                         padding: const EdgeInsets.all(5.0),
@@ -262,36 +268,7 @@ class _SignupState extends State<Signup> {
                       ),
                     ),
 
-                    GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        setState(() {});
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 3),
-                        padding: const EdgeInsets.all(5.0),
-                        decoration: BoxDecoration(
-                          color: Colors.white30,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border: Border.all(
-                            color: Color.fromARGB(255, 72, 187, 240),
-                            width: 0.1,
-                          ),
-                        ),
-                        child: TextField(
-                          controller: _confirmPasswordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(15.0),
-                            border: InputBorder.none,
-                            hintText: "Confirm Password",
-                            hintStyle: TextStyle(color: Colors.grey),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 10.0),
 
                     // Buttons
                     // Buttons(
@@ -307,18 +284,7 @@ class _SignupState extends State<Signup> {
                     // ),
                     MaterialButton(
                       onPressed: () {
-                        // if (isSignUp() == true) {
-                        //   print("Registration Successful");
-                        //   print("Email: " + _emailController.text);
-                        //   print("Password: " + _passwordController.text);
-                        //   print("Confirm Password: " +
-                        //       _confirmPasswordController.text);
-                        //   Get.toNamed('/login');
-                        // } else {
-                        //   print(
-                        //       "Registration Failed, please try again & check your credentials");
-                        // }
-                        _signup();
+                        handleSignUp();
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -333,6 +299,28 @@ class _SignupState extends State<Signup> {
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                    Container(
+                      // decoration: BoxDecoration(
+                      //   border: Border.all(color: Colors.black12, width: 0.1),
+                      // ),
+                      height: 50.0,
+                      child: Center(
+                        child: InkWell(
+                          onTap: () {
+                            Get.toNamed('/login');
+                          },
+                          child: Text(
+                            "Login ?",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 72, 187, 240),
+                            ),
+                          ),
                         ),
                       ),
                     ),

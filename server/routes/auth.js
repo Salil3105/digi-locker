@@ -7,14 +7,13 @@ router.post("/signup", (req, res) => {
   console.table(data);
   const user = new userModel(data);
   user.save((err, result) => {
-    // save the user
     if (err) {
       res.status(400).send(err);
     } else {
       res.status(200).send(result);
     }
   });
-});
+});	
 
 router.post("/signin", (req, res, next) => {
   const data = req.body;

@@ -17,31 +17,47 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
+  // API integration
   Future handleLogin() async {
-    var response = await http.post(
-      Uri.parse("http://192.168.187.140:5000/auth/signin"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'emailID': _emailController.text,
-        'password': _passwordController.text,
-      }),
-    );
-    
+    print("hello");
+    var emailController = _emailController.text;
+    var passwordController = _passwordController.text;
+    print("\n");
+    print("Email : $emailController");
+    print("Password : $passwordController");
+    print("\n");
+    var url = 'http://172.25.54.75:4000/auth/login';
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request('POST', Uri.parse(url));
+    request.body = json.encode({
+      "email": emailController,
+      "password": passwordController,
+    });
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
-      var responseJson = json.decode(response.body);
-      print(responseJson);
+      print("Successfully logged in");
+      Get.snackbar(
+        "Login ",
+        'Login Successful',
+        duration: Duration(seconds: 1),
+      );
+      print(await response.stream.bytesToString());
       Get.toNamed('/bottom-nav-bar');
-      print("Login Successful");
     } else {
-      print("Login Failed,\nStatus Code: ${response.statusCode}");
+      Get.snackbar(
+        "Login  Failed",
+        'Login Failed',
+        duration: Duration(seconds: 1),
+        backgroundColor: Color.fromARGB(255, 231, 163, 159),
+      );
+      print("Failed to login");
+      print(response.reasonPhrase);
     }
   }
-
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +121,7 @@ class _LoginState extends State<Login> {
                       // ),
                       child: Center(
                         child: Text(
-                          "Welcome to DIGI LOCKER ",
+                          "Welcome to SafeDoc",
                           style: GoogleFonts.mina(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -254,7 +270,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
 
-                    SizedBox(height: 160.0),
+                    SizedBox(height: 10.0),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

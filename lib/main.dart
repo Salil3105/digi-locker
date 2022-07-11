@@ -1,5 +1,5 @@
 // // imports
-import 'package:digi_locker_app/Pages/Drawer/drawer.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,9 +20,9 @@ void main() {
         GetPage(name: '/signup', page: () => Signup()),
         GetPage(name: '/forgot-screen', page: () => ForgotPassword()),
         GetPage(name: '/bottom-nav-bar', page: () => BottomNavBar()),
-        GetPage(name: '/drawer-slider', page: () => DrawerSlider()),
+        
       ],
-      initialRoute: '/bottom-nav-bar',
+      initialRoute: '/login',
       home: Scaffold(
         body: BottomNavBar(),
       ),
